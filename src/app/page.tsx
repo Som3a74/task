@@ -1,4 +1,3 @@
-import ScrollRevealHandler from "@/components/ui/ScrollRevealHandler";
 import { Navbar } from "@/features/landing/components/Navbar";
 import { HeroSection } from "@/features/landing/components/HeroSection";
 import { StatsSection } from "@/features/landing/components/StatsSection";
@@ -11,7 +10,6 @@ import { Footer } from "@/features/landing/components/Footer";
 export default function Home() {
   return (
     <>
-      <ScrollRevealHandler />
       <Navbar />
       <HeroSection />
       <StatsSection />

@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import Image from "next/image";
 
 const services = [
   {
@@ -49,7 +50,7 @@ const services = [
   },
 ];
 
-function ServiceSlide({ service, progress }: { service: typeof services[0]; progress: MotionValue<number> }) {
+function ServiceSlide({ service, progress, index }: { service: typeof services[0]; progress: MotionValue<number>; index: number }) {
   // Opacity for the whole slide
   const opacity = useTransform(
     progress,
@@ -78,10 +79,12 @@ function ServiceSlide({ service, progress }: { service: typeof services[0]; prog
     >
       {/* Background Image */}
       <motion.div className="absolute inset-0 w-full h-full origin-center" style={{ scale }}>
-        <img
+        <Image
           src={service.image}
-          className="w-full h-full object-cover"
+          className="object-cover"
           alt={service.title}
+          fill
+          priority={index === 0}
         />
       </motion.div>
 
@@ -116,7 +119,7 @@ export function HeroSection() {
     <section ref={containerRef} className="relative h-[400vh]">
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
         {services.map((service, index) => (
-          <ServiceSlide key={index} service={service} progress={scrollYProgress} />
+          <ServiceSlide key={index} service={service} progress={scrollYProgress} index={index} />
         ))}
       </div>
     </section>
