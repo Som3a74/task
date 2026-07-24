@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform, Variants } from "framer-motion";
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -13,17 +13,17 @@ const staggerContainer = {
   },
 };
 
-const fadeUpVariant = {
+const fadeUpVariant: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-const fadeLeftVariant = {
+const fadeLeftVariant: Variants = {
   hidden: { opacity: 0, x: 50 },
   show: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
-const arrowAnimation = {
+const arrowAnimation: Variants = {
   animate: {
     x: [0, 5, 0],
     y: [0, -5, 0],
@@ -35,7 +35,7 @@ const arrowAnimation = {
   }
 };
 
-const pulseAnimation = {
+const pulseAnimation: Variants = {
   animate: {
     scale: [1, 1.1, 1],
     opacity: [0.8, 1, 0.8],
@@ -202,7 +202,7 @@ export function GrowthSection() {
           >
             <motion.h2 variants={fadeUpVariant} className="font-headline-xl text-headline-xl text-on-surface mb-6">Data-Driven Growth.</motion.h2>
             <motion.p variants={fadeUpVariant} className="font-body-lg text-body-lg text-on-surface-variant mb-8">
-              Our proprietary management dashboards provide real-time visibility into your facility's performance, optimizing resource allocation and driving measurable efficiency gains across your portfolio.
+              Our proprietary management dashboards provide real-time visibility into your facility&apos;s performance, optimizing resource allocation and driving measurable efficiency gains across your portfolio.
             </motion.p>
             <motion.div variants={fadeUpVariant} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="glass-panel p-6 rounded-xl hover:bg-white/[0.03] transition-colors">

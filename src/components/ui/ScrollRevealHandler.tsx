@@ -19,7 +19,7 @@ export default function ScrollRevealHandler() {
     };
     
     window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll(); // Trigger on load
+    revealOnScroll();
     
     return () => window.removeEventListener('scroll', revealOnScroll);
   }, []);

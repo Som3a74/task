@@ -1,9 +1,9 @@
 "use client";
 
-import { motion, useInView, animate } from "framer-motion";
+import { motion, useInView, animate, Variants } from "framer-motion";
 import { useEffect, useRef } from "react";
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -13,7 +13,7 @@ const staggerContainer = {
   },
 };
 
-const fadeUpVariant = {
+const fadeUpVariant: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };

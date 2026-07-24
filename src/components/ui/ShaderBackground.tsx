@@ -43,25 +43,19 @@ varying vec2 v_texCoord;
 void main() {
     vec2 uv = v_texCoord;
     float time = u_time * 0.15;
-    
-    // Slow, deep obsidian flows
     float n1 = sin(uv.x * 1.5 + time) * 0.5 + 0.5;
     float n2 = cos(uv.y * 2.0 - time * 0.7) * 0.5 + 0.5;
     float n3 = sin((uv.x - uv.y) * 1.2 + time * 1.1) * 0.5 + 0.5;
     
-    // Luxury Palette: Near black to deep charcoal with a hint of midnight
-    vec3 col1 = vec3(0.02, 0.02, 0.03); // Near black
-    vec3 col2 = vec3(0.04, 0.04, 0.06); // Deep charcoal
-    vec3 col3 = vec3(0.06, 0.07, 0.09); // Dark midnight
+    vec3 col1 = vec3(0.02, 0.02, 0.03);
+    vec3 col2 = vec3(0.04, 0.04, 0.06);
+    vec3 col3 = vec3(0.06, 0.07, 0.09);
     
     vec3 color = mix(col1, col2, n1 * n2);
     color = mix(color, col3, n3 * 0.2);
-    
-    // Ambient "lighting" glow
     float glow = smoothstep(0.8, 0.0, distance(uv, vec2(0.5, 0.8)));
     color += vec3(0.05, 0.06, 0.08) * glow;
 
-    // Subtle grain for texture
     float grain = (sin(uv.x * 600.0) * sin(uv.y * 600.0) * 0.5 + 0.5) * 0.01;
     color += grain;
 

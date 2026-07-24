@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -13,14 +13,14 @@ const staggerContainer = {
   },
 };
 
-const fadeUpVariant = {
+const fadeUpVariant: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
 
 
-const wipeAnimation = {
+const wipeAnimation: Variants = {
   animate: {
     x: [-4, 4, -4],
     y: [2, -2, 2],
@@ -33,7 +33,7 @@ const wipeAnimation = {
   }
 };
 
-const pulseAnimation = {
+const pulseAnimation: Variants = {
   animate: {
     scale: [1, 1.1, 1],
     transition: {
@@ -44,7 +44,7 @@ const pulseAnimation = {
   }
 };
 
-const gearAnimation = {
+const gearAnimation: Variants = {
   animate: {
     rotate: [0, 360],
     transition: {

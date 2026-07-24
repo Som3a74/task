@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -13,12 +13,12 @@ const staggerContainer = {
   },
 };
 
-const fadeUpVariant = {
+const fadeUpVariant: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
-const slideInLeftVariant = {
+const slideInLeftVariant: Variants = {
   hidden: { opacity: 0, x: -50 },
   show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
@@ -37,7 +37,7 @@ export function AboutSection() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="glass-panel p-4 rounded-[2rem] relative z-10 w-full max-w-md overflow-hidden">
-              <Image alt="Team Photo" className="w-full h-auto rounded-xl object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/team-photo.webp" width={800} height={600} />
+              <Image alt="Team Photo" className="w-full h-auto rounded-xl object-cover grayscale hover:grayscale-0 transition-all duration-500" src="/images/team-photo.webp" width={800} height={600} sizes="(max-width: 1024px) 100vw, 50vw" />
             </div>
           </motion.div>
           <motion.div
@@ -49,7 +49,7 @@ export function AboutSection() {
           >
             <motion.h2 variants={fadeUpVariant} className="font-headline-xl text-headline-xl text-on-surface mb-6">Mastery in Every Detail.</motion.h2>
             <motion.p variants={fadeUpVariant} className="font-body-lg text-body-lg text-on-surface-variant mb-8 leading-relaxed">
-              At Amaze, we don't just manage properties; we curate environments. Our deep-rooted expertise spans physical security, immaculate housekeeping, and robust mechanical & electrical maintenance. We are the invisible force that ensures your operations run flawlessly, allowing you to focus on your core vision.
+              At Amaze, we don&apos;t just manage properties; we curate environments. Our deep-rooted expertise spans physical security, immaculate housekeeping, and robust mechanical & electrical maintenance. We are the invisible force that ensures your operations run flawlessly, allowing you to focus on your core vision.
             </motion.p>
             <motion.ul className="space-y-4 mb-8">
               <motion.li variants={slideInLeftVariant} className="flex items-center gap-4 border-b border-white/5 pb-4">
