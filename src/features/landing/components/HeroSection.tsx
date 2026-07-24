@@ -1,37 +1,123 @@
-import ShaderBackground from "@/components/ui/ShaderBackground";
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+
+const services = [
+  {
+    title: "Amaze Property Management Solutions Pvt Ltd",
+    description: "Elevating property standards with comprehensive, world-class management solutions tailored for excellence.",
+    image: "/images/hero1.png",
+    // Starts fully visible
+    opacityInput: [0, 0.22, 0.28],
+    opacityOutput: [1, 1, 0],
+    scaleInput: [0, 0.28],
+    yInput: [0, 0.22, 0.28],
+    yOutput: [0, 0, -30],
+  },
+  {
+    title: "Technical Services",
+    description: "Ensuring optimal performance and reliability with cutting-edge maintenance and engineering solutions.",
+    image: "/images/hero4.jpg",
+    // Normal fade in and out
+    opacityInput: [0.22, 0.28, 0.48, 0.54],
+    opacityOutput: [0, 1, 1, 0],
+    scaleInput: [0.22, 0.54],
+    yInput: [0.22, 0.28, 0.48, 0.54],
+    yOutput: [30, 0, 0, -30],
+  },
+  {
+    title: "Landscaping Services",
+    description: "Crafting and maintaining breathtaking outdoor spaces that harmonize nature with modern aesthetics.",
+    image: "/images/hero5.jpg",
+    opacityInput: [0.48, 0.54, 0.74, 0.8],
+    opacityOutput: [0, 1, 1, 0],
+    scaleInput: [0.48, 0.8],
+    yInput: [0.48, 0.54, 0.74, 0.8],
+    yOutput: [30, 0, 0, -30],
+  },
+  {
+    title: "Parking Management",
+    description: "Delivering seamless, secure, and efficient parking solutions for enhanced convenience and flow.",
+    image: "/images/hero6.jpg",
+    // Ends fully visible
+    opacityInput: [0.74, 0.8, 1],
+    opacityOutput: [0, 1, 1],
+    scaleInput: [0.74, 1],
+    yInput: [0.74, 0.8, 1],
+    yOutput: [30, 0, 0],
+  },
+];
+
+function ServiceSlide({ service, progress }: { service: typeof services[0]; progress: MotionValue<number> }) {
+  // Opacity for the whole slide
+  const opacity = useTransform(
+    progress,
+    service.opacityInput,
+    service.opacityOutput
+  );
+
+  // Subtle zoom effect on the image
+  const scale = useTransform(
+    progress,
+    service.scaleInput,
+    [1, 1.15]
+  );
+
+  // Soft vertical movement for the text
+  const y = useTransform(
+    progress,
+    service.yInput,
+    service.yOutput
+  );
+
+  return (
+    <motion.div
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ opacity }}
+    >
+      {/* Background Image */}
+      <motion.div className="absolute inset-0 w-full h-full origin-center" style={{ scale }}>
+        <img
+          src={service.image}
+          className="w-full h-full object-cover"
+          alt={service.title}
+        />
+      </motion.div>
+
+      {/* Dark Overlay for Readability */}
+      <div className="absolute inset-0 bg-black/40" />
+
+      {/* Text Content */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+        <motion.div style={{ y }} className="max-w-5xl">
+          <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-6 drop-shadow-xl text-balance">
+            {service.title}
+          </h1>
+          <p className="font-body-lg text-body-lg text-white/90 max-w-2xl mx-auto drop-shadow-md">
+            {service.description}
+          </p>
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+}
 
 export function HeroSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // We track the scroll progress of the container section
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <ShaderBackground />
-      </div>
-      
-      <div className="ambient-glow top-0 left-1/2 -translate-x-1/2"></div>
-      <div className="relative z-10 container mx-auto px-container-padding-mobile md:px-container-padding-desktop flex flex-col items-center text-center">
-        <span className="font-label-sm text-label-sm text-on-surface-variant tracking-[0.2em] uppercase mb-6 reveal">Redefining Facility Excellence</span>
-        <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-gradient max-w-4xl mb-8 reveal" style={{ transitionDelay: "100ms" }}>
-          Elevate Your Property Ecosystem.
-        </h1>
-        <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12 reveal" style={{ transitionDelay: "200ms" }}>
-          Amaze delivers uncompromising quality in facility management, blending cutting-edge operational intelligence with pristine service execution.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 mb-24 reveal" style={{ transitionDelay: "300ms" }}>
-          <button className="bg-primary text-primary-container px-8 py-4 rounded-full font-body-md text-body-md font-semibold hover:bg-white transition-colors">
-            Explore Services
-          </button>
-          <button className="glass-button px-8 py-4 rounded-full font-body-md text-body-md flex items-center justify-center gap-2">
-            <span className="material-symbols-outlined text-[20px]">play_circle</span>
-            Watch Reel
-          </button>
-        </div>
-        
-        <div className="w-full max-w-6xl relative reveal" style={{ transitionDelay: "400ms" }}>
-          <div className="absolute -inset-4 bg-primary/20 blur-3xl rounded-full opacity-30 z-0"></div>
-          <div className="glass-panel p-2 rounded-2xl relative z-10 transform perspective-1000 rotate-x-12 hover:rotate-x-0 transition-transform duration-700">
-            <img alt="Dashboard Mockup" className="w-full rounded-xl object-cover shadow-2xl opacity-90 hover:opacity-100 transition-opacity" src="/images/dashboard-mockup.webp" />
-          </div>
-        </div>
+    <section ref={containerRef} className="relative h-[400vh]">
+      <div className="sticky top-0 h-screen w-full overflow-hidden bg-black">
+        {services.map((service, index) => (
+          <ServiceSlide key={index} service={service} progress={scrollYProgress} />
+        ))}
       </div>
     </section>
   );
