@@ -23,6 +23,29 @@ const fadeLeftVariant = {
   show: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } },
 };
 
+const arrowAnimation = {
+  animate: {
+    x: [0, 5, 0],
+    y: [0, -5, 0],
+    transition: {
+      duration: 1.5,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+};
+
+const pulseAnimation = {
+  animate: {
+    scale: [1, 1.1, 1],
+    opacity: [0.8, 1, 0.8],
+    transition: {
+      duration: 2,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+};
 
 export function GrowthSection() {
   return (
@@ -43,12 +66,12 @@ export function GrowthSection() {
             </motion.p>
             <motion.div variants={fadeUpVariant} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="glass-panel p-6 rounded-xl hover:bg-white/[0.03] transition-colors">
-                <span className="material-symbols-outlined text-primary mb-4 block">trending_up</span>
+                <motion.span variants={arrowAnimation} animate="animate" className="material-symbols-outlined text-primary mb-4 block">trending_up</motion.span>
                 <h4 className="font-body-lg text-body-lg font-bold text-white mb-1">Operational Efficiency</h4>
                 <p className="font-label-sm text-label-sm text-on-surface-variant">Streamlined workflows reducing overhead.</p>
               </div>
               <div className="glass-panel p-6 rounded-xl hover:bg-white/[0.03] transition-colors">
-                <span className="material-symbols-outlined text-primary mb-4 block">insights</span>
+                <motion.span variants={pulseAnimation} animate="animate" className="material-symbols-outlined text-primary mb-4 block">insights</motion.span>
                 <h4 className="font-body-lg text-body-lg font-bold text-white mb-1">Predictive Analytics</h4>
                 <p className="font-label-sm text-label-sm text-on-surface-variant">Anticipate needs before they arise.</p>
               </div>

@@ -33,6 +33,28 @@ const wipeAnimation = {
   }
 };
 
+const pulseAnimation = {
+  animate: {
+    scale: [1, 1.1, 1],
+    transition: {
+      duration: 2,
+      repeat: Infinity,
+      ease: "easeInOut"
+    }
+  }
+};
+
+const gearAnimation = {
+  animate: {
+    rotate: [0, 360],
+    transition: {
+      duration: 4,
+      repeat: Infinity,
+      ease: "linear"
+    }
+  }
+};
+
 
 
 export function ServicesSection() {
@@ -64,7 +86,7 @@ export function ServicesSection() {
             </div>
             <div className="relative z-10">
               <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 backdrop-blur-md">
-                <span className="material-symbols-outlined text-primary">shield_lock</span>
+                <motion.span variants={pulseAnimation} animate="animate" className="material-symbols-outlined text-primary">shield_lock</motion.span>
               </div>
             </div>
             <div className="relative z-10 mt-auto">
@@ -83,7 +105,7 @@ export function ServicesSection() {
 
           <motion.div variants={fadeUpVariant} className="glass-panel rounded-[2rem] p-8 group hover:bg-white/[0.02] transition-colors">
             <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-6">
-              <span className="material-symbols-outlined text-primary">engineering</span>
+              <motion.span variants={gearAnimation} animate="animate" className="material-symbols-outlined text-primary">settings</motion.span>
             </div>
             <h3 className="font-headline-md text-headline-md text-white mb-2">MEP Maintenance</h3>
             <p className="font-body-md text-body-md text-on-surface-variant">Preventative and predictive maintenance for complex mechanical, electrical, and plumbing systems.</p>
