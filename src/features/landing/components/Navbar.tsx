@@ -4,7 +4,7 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 mt-4 mx-auto w-[95%] max-w-7xl rounded-full bg-surface/60 dark:bg-surface/60 backdrop-blur-xl border border-white/10 shadow-2xl flex items-center justify-between px-8 py-3">
       <div className="flex items-center gap-2">
-        <Image src="/images/logo.png" alt="Amaze Logo" className="h-8 w-auto" width={120} height={32} priority />
+        <Image src="/images/logo.png" alt="Amaze Logo" className="h-8 w-auto brightness-0 invert" width={120} height={32} priority />
       </div>
       <div className="hidden md:flex items-center gap-8">
         <a className="text-on-surface-variant hover:text-on-surface transition-colors font-body-md text-body-md hover:bg-white/5 transition-all duration-300 px-3 py-1 rounded-full" href="#">Portfolio</a>
